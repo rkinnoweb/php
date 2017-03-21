@@ -24,15 +24,11 @@ if platform?('windows')
   include_recipe 'iis::mod_cgi'
 
   install_dir = File.expand_path(node['php']['conf_dir']).tr('/', '\\')
-  windows_package node['php']['windows']['msi_name'] do
-    source node['php']['windows']['msi_source']
-    installer_type :msi
-
-    options %W(
-      /quiet
-      INSTALLDIR="#{install_dir}"
-      ADDLOCAL=#{node['php']['packages'].join(',')}
-    ).join(' ')
+  
+  chocolatey_package 'php' do
+    version node['php']['version']
+    options "/InstallDir #{install_dir}"
+    action :install
   end
 
   # WARNING: This is not the out-of-the-box go-pear.phar. It's been modified to patch this bug:
