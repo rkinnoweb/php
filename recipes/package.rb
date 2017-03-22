@@ -27,7 +27,9 @@ if platform?('windows')
   
   chocolatey_package 'php' do
     version node['php']['version']
-    options "/InstallDir:#{install_dir}"
+    options %W(
+      /InstallDir:"#{install_dir}"
+    ).join(' ')
     action :install
   end
 
