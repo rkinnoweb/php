@@ -137,8 +137,6 @@ when 'suse'
   default['php']['mysql']['package'] = 'php5-mysql'
   lib_dir = node['kernel']['machine'] =~ /x86_64/ ? 'lib64' : 'lib'
 when 'windows'
-  default['php']['windows']['msi_name']      = 'PHP 5.6.30'
-  default['php']['windows']['msi_source']    = 'http://windows.php.net/downloads/releases/php-5.6.30-nts-Win32-VC11-x86.msi'
   default['php']['bin']           = 'php.exe'
   default['php']['conf_dir']      = 'C:\Program Files (x86)\PHP'
   default['php']['ext_conf_dir']  = node['php']['conf_dir']
