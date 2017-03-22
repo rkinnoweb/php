@@ -36,18 +36,18 @@ if platform?('windows')
 
   # WARNING: This is not the out-of-the-box go-pear.phar. It's been modified to patch this bug:
   # http://pear.php.net/bugs/bug.php?id=16644
-  cookbook_file "#{node['php']['conf_dir']}/PEAR/go-pear.phar" do
-    source 'go-pear.phar'
-  end
+  #cookbook_file "#{node['php']['conf_dir']}\PEAR\go-pear.phar" do
+  #  source 'go-pear.phar'
+  #end
 
-  template "#{node['php']['conf_dir']}/pear-options" do
+  template "#{node['php']['conf_dir']}\pear-options" do
     source 'pear-options.erb'
   end
 
   execute 'install-pear' do
     cwd node['php']['conf_dir']
     command 'go-pear.bat < pear-options'
-    creates "#{node['php']['conf_dir']}/pear.bat"
+    creates "#{node['php']['conf_dir']}\pear.bat"
   end
 
   ENV['PATH'] += ";#{install_dir}"
