@@ -28,8 +28,8 @@ if platform?('windows')
   chocolatey_package 'php' do
     version node['php']['version']
     options %W(
-      --params 
-      '/InstallDir:"#{install_dir}"'
+      --params '/InstallDir:"#{install_dir}"'
+      --allow-empty-checksums
     ).join(' ')
     action :install
   end
